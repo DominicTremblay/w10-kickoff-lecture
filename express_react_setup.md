@@ -6,7 +6,7 @@
 
 ## Install The Back-End
 
-- express --view=ejs final-project-name
+- `express --view=ejs final-project-name`
 - cd final-project-name && npm install
 - edit bin/www and change the port to 3001
 - add console.log to onListening and add a start script
@@ -154,66 +154,64 @@ At the root of the project folder, type the following:
 
 Install Axios
 
-`npm install Axios`
+`npm install axios`
 
 Create a `useEffect` hook to load the users
 
 ```js
-  useEffect(() => {
-    axios
-      .get('/api/users')
-      .then(result => {
-        dispatch({type: SET_USERS, users:result.data});
-      })
-      .catch(error => {
-        console.log(error);
-      })
-  }, [])
+useEffect(() => {
+  axios
+    .get('/api/users')
+    .then(result => {
+      dispatch({ type: SET_USERS, users: result.data });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+}, []);
 ```
 
 Create a `Reducer` fct to update the state
 
 ```js
 const dataReducer = (state, action) => {
-
   const actions = {
     SET_USERS: {
       ...state,
-      users: action.users
-    }
-  }
+      users: action.users,
+    },
+  };
 
   if (!actions[action.type]) {
     throw new Error('Type of action not found');
   }
   return actions[action.type];
-}
+};
 ```
+
 Display the list of users in App
 
 ```js
 const App = () => {
-
-  const {state, dispatch} = useApplicationData();
-  const userList = state.users.map(user => <li key={user.id}>{user.first_name} {user.last_name} {user.email}</li>)
+  const { state, dispatch } = useApplicationData();
+  const userList = state.users.map(user => (
+    <li key={user.id}>
+      {user.first_name} {user.last_name} {user.email}
+    </li>
+  ));
   return (
-    <div className="App">
+    <div className='App'>
       <h1>Users</h1>
 
-      <ul>
-        {userList}
-      </ul>
-
+      <ul>{userList}</ul>
     </div>
   );
-}
+};
 ```
 
 To use Sass, install node-sass
 
 `npm i node-sass`
-
-
 
 ## Ports
 
