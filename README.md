@@ -1,4 +1,4 @@
-# w8d3-project-kickoff
+# w10d4-project-kickoff
 
 Welcome to the w8d3 Final Project Kickoff!
 
