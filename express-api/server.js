@@ -11,7 +11,7 @@ import sassMiddleware from './lib/sass-middleware.js';
 import express from 'express';
 import morgan from 'morgan';
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -41,10 +41,11 @@ import { default as widgetApiRoutes } from './routes/widgets-api.js';
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
-app.use('/api/users', userApiRoutes);
-app.use('/api/widgets', widgetApiRoutes);
-app.use('/users', usersRoutes);
+
+import { default as movieRoutes } from './routes/movieRoutes.js';
+
 // Note: mount other resources here, using the same pattern above
+app.use('/api/movies', movieRoutes);
 
 // Home page
 // Warning: avoid creating more routes in this file!
